@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}Submitted Forms - OXFORD GLOBAL ACADEMY{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="text-center">Submitted Forms</h2>
+        <!-- Logout Button (If the admin is logged in) -->
+        {% if 'admin' in session %}
+        <a href="{{ url_for('logout') }}" class="btn btn-danger">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </a>
+        {% endif %}
+    </div>
+
+    <table class="table table-bordered table-striped mt-4">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Comments</th>
+                <th>Image</th>
+                <th>Supported Document</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+            <tr>
+                <td>{{ application.id }}</td>
+                <td>{{ application.firstname }}</td>
+                <td>{{ application.lastname }}</td>
+                <td>{{ application.email }}</td>
+                <td>{{ application.course }}</td>
+                <td>{{ application.comments }}</td>
+                <td>
+                    {% if application.image_filename %}
+                    <a href="{{ url_for('static', filename='uploads/' + application.image_filename) }}" target="_blank">
+                        {{ application.image_filename }}
+                    </a>
+                    {% else %}
+                    No Image
+                    {% endif %}
+                </td>
+                <td>
+                    {% if application.file_filename %}
+                    <a href="{{ url_for('static', filename='uploads/' + application.file_filename) }}" target="_blank">
+                        {{ application.file_filename }}
+                    </a>
+                    {% else %}
+                    No File
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

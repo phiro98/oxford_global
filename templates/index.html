@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Course Application - OXFORD GLOBAL ACADEMY{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Course Application Form</h2>
+    <form action="/submit_form" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="firstname">First Name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname" required>
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="course">Course</label>
+            <select class="form-control" id="course" name="course" required>
+                <option value="Python">Python</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Web Development">Web Development</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="comments">Comments</label>
+            <textarea class="form-control" id="comments" name="comments" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="image">Upload your Image</label>
+            <input type="file" class="form-control-file" accept="image/*" id="image" name="image" required>
+        </div>
+        <div class="form-group">
+            <label for="file">Upload Your ID</label>
+            <input type="file" class="form-control-file" id="file" name="file" accept=".pdf,.doc,.docx" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary">Clear Form</button>
+
+    </form>
+</div>
+{% endblock %}
