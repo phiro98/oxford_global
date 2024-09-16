@@ -86,6 +86,7 @@ def submit_form():
         # Create new application entry in the database
         new_application = Application(firstname=firstname, lastname=lastname, email=email, course=course,
                                       comments=comments, image_filename=image_filename, file_filename=file_filename)
+        
         db.session.add(new_application)
         db.session.commit()
 
